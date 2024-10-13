@@ -47,12 +47,17 @@ def batch2(file_path, lower_elo, higher_elo):
                 if count % 2 == 0:
                     # Store the game only if the flag is set
                     if store_game:
+                        print(lines, emoji)
+                        #print(emoji, full_games)
                         full_games.append(lines[:])
                        # print(f"Appended game {emoji}: {lines}")
                     # Reset for next game
                     lines = []
                     store_game = False  # Reset store_game flag for the next game
+            
+            
 
+    print(full_games, emoji)
     return full_games
 
 interval = 50
@@ -60,7 +65,10 @@ start = 800
 file_path = 'earliest_games.clj'
 
 
-for i in range(1, 3):
+##Store rating in csv file
+
+
+for i in range(0, 5):
     filename = f'{start + i*interval}rating.csv'
     lower_rating = start + (i - 1) * interval
     upper_rating = start + i * interval
@@ -74,24 +82,41 @@ for i in range(1, 3):
 
         for game in under_1000:
             moves_line = game[-2]  # Assuming the second last line contains the moves
+            print(emoji, moves_line)
             if moves_line:  # Ensure moves are present
                 move_list = moves_line.split(' ')  # Split the moves by space
 
-                print(move_list)
+                print('this is move list', move_list)
                 
-                move_number = 1  # Initialize move number
+                move_number = -1  # Initialize move number
 
                 # Process moves in pairs
-                for index in range(1, len(move_list), 2): #I chatgpt'd this, changed range to 1 to adjust indexes xd
-                    white_move = move_list[index] if index < len(move_list) else ''
-                    black_move = move_list[index + 1] if index + 1 < len(move_list) else ''
+                for index in range(0, len(move_list)): #I chatgpt'd this, changed range to 1 to adjust indexes xd
+
+                    #print(move_list[index], index)
+                    if index % 3 == 0:
+                        move_number += 1
+
+                    elif index % 3 == 1:
+                        white_move = move_list[index]
                     
-                    # Remove trailing dot from white move if it has one
-                    if white_move.endswith('.'):
-                        white_move = white_move[:-1]
+                    else:
+                        black_move = move_list[index]
 
-                    writer.writerow([move_number, white_move, black_move])
-                    move_number += 1  # Increment move number for the next pair
+                    if index % 3 == 0 and index // 3 >= 1:
+                        writer.writerow([move_number, white_move, black_move])
+                writer.writerow(game[4])
+                writer.writerow('')
+                    #print(index)
+                    # white_move = move_list[index] if index < len(move_list) else ''
+                    # #print(white_move)
+                    # black_move = move_list[index + 1] if index + 1 < len(move_list) else ''
+                    
+                    # # Remove trailing dot from white move if it has one
+                    # if white_move.endswith('.'):
+                    #     white_move = white_move[:-1]
+
+                    # writer.writerow([move_number, white_move, black_move])
+                    # move_number += 1  # Increment move number for the next pair
 
 
-#
