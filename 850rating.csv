@@ -17,7 +17,7 @@ Move number,White Moves,Black Moves
 16,Nd5,Na5
 17,f4,c6
 18,Nxe7+,Bxe7
-[,R,e,s,u,l,t, ,"""",1,-,0,"""",]
+[Result,"""1-0""]"
 
 1,e4,c5
 2,d3,Nc6
@@ -41,7 +41,7 @@ Move number,White Moves,Black Moves
 20,Qe2,Ne5
 21,f4,Qh3
 22,Nh2,Qxg3
-[,R,e,s,u,l,t, ,"""",1,-,0,"""",]
+[Result,"""1-0""]"
 
 1,d3,g6
 2,d4,Bg7
@@ -60,5 +60,5 @@ Move number,White Moves,Black Moves
 15,Kd2,Qfxe2+
 16,Kc1,Qc3
 17,Kb1,Qexc2#
-[,R,e,s,u,l,t, ,"""",0,-,1,"""",]
+[Result,"""0-1""]"
 
